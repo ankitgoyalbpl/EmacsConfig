@@ -8,8 +8,8 @@
 
 ;; Setting to inhibit the Spalsh Screen and Echo Area Message
 ;; when starting Emacs
-(setq inhibit-startup-message t)
-(setq inhibit-startup-echo-area-message t)
+(setq inhibit-startup-message 1)
+(setq inhibit-startup-echo-area-message 1)
 
 ;; Setiings to display Row and Column numbers in the Echo Area.
 (line-number-mode 1)
@@ -25,7 +25,7 @@
 
 ;; Turn on mouse wheel support for scrolling
 (require 'mwheel)
-(mouse-wheel-mode t)
+(mouse-wheel-mode 1)
 
 ;; Language Settings
 (setq current-language-environment "English")
@@ -39,11 +39,11 @@
 (if (not (file-exists-p --backup-directory))
     (make-directory --backup-directory t))
 (setq backup-directory-alist `(("." . ,--backup-directory)))
-(setq make-backup-files t               ; backup of a file the first time it is saved.
-      backup-by-copying t               ; don't clobber symlinks
-      version-control t                 ; version numbers for backup files
-      delete-old-versions t             ; delete excess backup files silently
-      auto-save-default t               ; auto-save every buffer that visits a file
+(setq make-backup-files 1               ; backup of a file the first time it is saved.
+      backup-by-copying 1               ; don't clobber symlinks
+      version-control 1                 ; version numbers for backup files
+      delete-old-versions 1             ; delete excess backup files silently
+      auto-save-default 1               ; auto-save every buffer that visits a file
       auto-save-timeout 20              ; number of seconds idle time before auto-save (default: 30)
       auto-save-interval 200            ; number of keystrokes between auto-saves (default: 300)
       )
@@ -52,7 +52,7 @@
 ;; http://melpa.org/getting-started
 (require 'package)
 (add-to-list 'package-archives
-             '("melpa" . "http://melpa.org/packages/") t)
+             '("melpa" . "http://melpa.org/packages/") 1)
 (add-to-list 'package-archives
 	     '("gnu" . "http://elpa.gnu.org/packages/") t)
 (package-initialize)
@@ -69,6 +69,9 @@
 ;; Replacing "yes or no" prompt with "y/n"
 (fset 'yes-or-no-p 'y-or-n-p)
 
+; Ignore case when searching
+(setq-default case-fold-search 1)
+
 ;; Always use spaces, not tabs, when indenting
 (setq-default indent-tabs-mode -1)
 
@@ -79,13 +82,25 @@
 (defvaralias 'cperl-indent-level 'tab-width)
 
 
-;;-----------------------Font and Themee Settings--------------------;;
+;;-----------------------Font and Theme Settings--------------------;;
 
 ;; Adding Leuven-Theme
 ;; https://github.com/fniessen/emacs-leuven-themex
 (add-to-list 'custom-theme-load-path "~/.emacs.d/elpa/leuven-theme-20150427.1202")
-(load-theme 'leuven t)
+(load-theme 'leuven 1)
 
+
+;;-----------------------IDO Setting---------------------------------;;
+;; http://emacswiki.org/emacs/InteractivelyDoThings
+(require 'ido)
+(ido-mode 1)
+(require 'ido-ubiquitous)
+(ido-ubiquitous-mode t)
+;; M-x interface with Ido-style fuzzy matching.
+(require 'smex)
+(global-set-key (kbd "M-x") 'smex)
+(require 'ido-vertical-mode)
+(ido-vertical-mode 1)
 
 
 ;;-----------------------Default Entries by Emacs--------------------;;
