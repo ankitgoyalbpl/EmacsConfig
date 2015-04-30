@@ -79,6 +79,14 @@
 (defvaralias 'cperl-indent-level 'tab-width)
 
 
+;;-----------------------Font and Themee Settings--------------------;;
+
+;; Adding Leuven-Theme
+;; https://github.com/fniessen/emacs-leuven-themex
+(add-to-list 'custom-theme-load-path "~/.emacs.d/elpa/leuven-theme-20150427.1202")
+(load-theme 'leuven t)
+
+
 
 ;;-----------------------Default Entries by Emacs--------------------;;
 (custom-set-variables
