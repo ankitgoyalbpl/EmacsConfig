@@ -23,13 +23,6 @@
 ;; Toggle line highlighting in all buffers (Global Hl-Line mode).
 (global-hl-line-mode 1)
 
-;; Turn on mouse wheel support for scrolling
-(require 'mwheel)
-(mouse-wheel-mode 1)
-
-;; Language Settings
-(setq current-language-environment "English")
-
 
 ;;-----------------------General Settings----------------------------;;
 
@@ -54,7 +47,7 @@
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.org/packages/") 1)
 (add-to-list 'package-archives
-	     '("gnu" . "http://elpa.gnu.org/packages/") t)
+	     '("gnu" . "http://elpa.gnu.org/packages/") 1)
 (package-initialize)
 
 ;; Make Text mode the default mode for new buffers 
@@ -71,6 +64,13 @@
 
 ; Ignore case when searching
 (setq-default case-fold-search 1)
+
+;; Turn on mouse wheel support for scrolling
+(require 'mwheel)
+(mouse-wheel-mode 1)
+
+;; Language Settings
+(setq current-language-environment "English")
 
 ;; Always use spaces, not tabs, when indenting
 (setq-default indent-tabs-mode -1)
