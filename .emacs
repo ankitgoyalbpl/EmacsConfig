@@ -31,6 +31,55 @@
 (setq current-language-environment "English")
 
 
+;;-----------------------General Settings----------------------------;;
+
+;; Removing Backup Files
+;; http://stackoverflow.com/questions/151945/how-do-i-control-how-emacs-makes-backup-files
+(defvar --backup-directory (concat user-emacs-directory "Backups"))
+(if (not (file-exists-p --backup-directory))
+    (make-directory --backup-directory t))
+(setq backup-directory-alist `(("." . ,--backup-directory)))
+(setq make-backup-files t               ; backup of a file the first time it is saved.
+      backup-by-copying t               ; don't clobber symlinks
+      version-control t                 ; version numbers for backup files
+      delete-old-versions t             ; delete excess backup files silently
+      auto-save-default t               ; auto-save every buffer that visits a file
+      auto-save-timeout 20              ; number of seconds idle time before auto-save (default: 30)
+      auto-save-interval 200            ; number of keystrokes between auto-saves (default: 300)
+      )
+
+;; Adding Melpa and Elpa packages list to install packages
+;; http://melpa.org/getting-started
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.org/packages/") t)
+(add-to-list 'package-archives
+	     '("gnu" . "http://elpa.gnu.org/packages/") t)
+(package-initialize)
+
+;; Make Text mode the default mode for new buffers 
+(setq default-major-mode 'text-mode)
+
+;; New Key Binding for Save all Buffers and Close Emacs
+(global-set-key (kbd "C-M-c") 'save-buffers-kill-emacs)
+
+;; Set my default Email Address
+(setq user-mail-address "ankitgoyal.bpl@hotmail.com")
+
+;; Replacing "yes or no" prompt with "y/n"
+(fset 'yes-or-no-p 'y-or-n-p)
+
+;; Always use spaces, not tabs, when indenting
+(setq-default indent-tabs-mode -1)
+
+;; Set Tab Width to be 5
+;; http://www.emacswiki.org/emacs/IndentationBasics
+(setq-default tab-width 5) ; or any other preferred value
+(defvaralias 'c-basic-offset 'tab-width)
+(defvaralias 'cperl-indent-level 'tab-width)
+
+
+
 ;;-----------------------Default Entries by Emacs--------------------;;
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
