@@ -103,6 +103,25 @@
 (ido-vertical-mode 1)
 
 
+;;-----------------------Auto-Complete Settings----------------------;;
+(add-to-list 'load-path "~/.emacs.d/elpa/auto-complete-20150408.1132")
+(require 'auto-complete)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/elpa/auto-complete-20150408.1132/dict")
+(require 'auto-complete-config)
+(ac-config-default)
+(global-auto-complete-mode 1)
+(ac-set-trigger-key "TAB")
+(setq ac-auto-show-menu 0.5)
+(setq ac-delay 0.5)
+(setq ac-use-fuzzy 1)
+(setq ac-auto-start 3)
+(setq ac-menu-height 5)
+(setq ac-candidate-limit 10)
+(setq ac-ignore-case 'smart)
+(setq ac-use-quick-help 1)
+(setq ac-quick-help-delay 1)
+
+
 ;;-----------------------C++ Mode Settings---------------------------;;
 ;; Created after studying from multiple sources.
 ;; https://truongtx.me/2013/03/10/emacs-setting-up-perfect-environment-for-cc-programming/
