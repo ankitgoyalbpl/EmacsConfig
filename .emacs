@@ -6,7 +6,7 @@
 (menu-bar-mode -1)
 (scroll-bar-mode -1) 
 
-;; Setting to inhibit the Spalsh Screen and Echo Area Message
+;; Setting to inhibit the Splash Screen and Echo Area Message
 ;; when starting Emacs
 (setq inhibit-startup-message 1)
 (setq inhibit-startup-echo-area-message 1)
@@ -21,7 +21,12 @@
 (global-linum-mode 1)
 
 ;; Toggle line highlighting in all buffers (Global Hl-Line mode).
+;; http://www.jesshamrick.com/2012/09/18/emacs-as-a-python-ide/
 (global-hl-line-mode 1)
+(setq highlight-current-line-globally t)
+(setq highlight-current-line-high-faces nil)
+(setq highlight-current-line-whole-line nil)
+(setq hl-line-face (quote highlight))
 
 
 ;;-----------------------General Settings----------------------------;;
@@ -84,13 +89,16 @@
 
 ;;-----------------------Font and Theme Settings--------------------;;
 
-;; Adding Leuven-Theme
+;; Adding Color-Theme
 ;; https://github.com/fniessen/emacs-leuven-themex
-(add-to-list 'custom-theme-load-path "~/.emacs.d/elpa/leuven-theme-20150427.1202")
-(load-theme 'leuven 1)
+;; https://github.com/owainlewis/emacs-color-themes
+;; Have Modified Hickey.el file to set comment color to #FCAEAE
+(add-to-list 'custom-theme-load-path "~/.emacs.d/elpa/sublime-themes-20150328.131")
+(load-theme 'hickey 1)
 
 
 ;;-----------------------IDO Setting---------------------------------;;
+
 ;; http://emacswiki.org/emacs/InteractivelyDoThings
 (require 'ido)
 (ido-mode 1)
@@ -104,6 +112,8 @@
 
 
 ;;-----------------------Auto-Complete Settings----------------------;;
+
+;; http://auto-complete.org/doc/manual.html
 (add-to-list 'load-path "~/.emacs.d/elpa/auto-complete-20150408.1132")
 (require 'auto-complete)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/elpa/auto-complete-20150408.1132/dict")
@@ -123,6 +133,7 @@
 
 
 ;;-----------------------C++ Mode Settings---------------------------;;
+
 ;; Created after studying from multiple sources.
 ;; https://truongtx.me/2013/03/10/emacs-setting-up-perfect-environment-for-cc-programming/
 ;; https://www.youtube.com/watch?v=HTUE03LnaXA
@@ -161,6 +172,7 @@
 (add-hook 'c++-mode-hook 'my-c-mode-hook)
 
 ;;-----------------------Default Entries by Emacs--------------------;;
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
