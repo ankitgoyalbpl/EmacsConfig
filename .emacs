@@ -95,13 +95,51 @@
 (require 'ido)
 (ido-mode 1)
 (require 'ido-ubiquitous)
-(ido-ubiquitous-mode t)
+(ido-ubiquitous-mode 1)
 ;; M-x interface with Ido-style fuzzy matching.
 (require 'smex)
 (global-set-key (kbd "M-x") 'smex)
 (require 'ido-vertical-mode)
 (ido-vertical-mode 1)
 
+
+;;-----------------------C++ Mode Settings---------------------------;;
+;; Created after studying from multiple sources.
+;; https://truongtx.me/2013/03/10/emacs-setting-up-perfect-environment-for-cc-programming/
+;; https://www.youtube.com/watch?v=HTUE03LnaXA
+;; http://www.emacswiki.org/emacs/IndentingC
+;; http://cc-mode.sourceforge.net/html-manual/index.html
+(require 'cc-mode)
+(setq-default c-indent-tabs-mode 1)
+(setq-default c-tab-always-indent 1)
+(setq-default c-indent-level 5)
+(setq-default backward-delete-function -1)
+(define-key c-mode-base-map (kbd "RET") 'newline-and-indent)
+
+;; Need to read more about c-offsets-alist
+(c-add-style "my-c-style"
+		   '("stroustrup"
+			(c-offsets-alist
+			 (innamespace . -)
+			 (inline-open . 0)
+			 (inher-cont . c-lineup-multi-inher)
+			 (arglist-cont-nonempty . +)
+			 (template-args-cont . +))))
+
+(require 'autopair)
+(autopair-global-mode 1)
+(setq autopair-autowrap 1)
+
+(defun my-c-mode-hook ()
+  (c-set-style "my-c-style")
+  (c-set-offset 'substatement-open '0) ; brackets should be at same indentation level as the statements they open
+  (c-set-offset 'arglist-intro '+)
+  (c-set-offset 'inline-open '+)
+  (c-set-offset 'block-open '+)
+  (c-set-offset 'brace-list-open '+)   ; all "opens" should be indented by the c-indent-level
+  (c-set-offset 'case-label '+))       ; indent case labels by c-indent-level, too
+(add-hook 'c-mode-hook 'my-c-mode-hook)
+(add-hook 'c++-mode-hook 'my-c-mode-hook)
 
 ;;-----------------------Default Entries by Emacs--------------------;;
 (custom-set-variables
